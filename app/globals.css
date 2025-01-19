@@ -1,21 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.slick-slide > div { padding: 0; }
+
+.slick-slide {
+  margin-right: 40px !important;
+}
+
+.slick-list {
+  height: 350px !important;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", 'sans-serif' !important;
+  background-color: rgba(255, 255, 255, 0.80);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  /* width: 300px;  */
+}
+
+
+@layer components {
+  .max-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* .input {
+    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+  } */
+}
+
+@layer utilities {
+  .padding {
+    @apply sm:px-16 px-8 sm:py-24 py-12;
+  }
+
+  .padding-x {
+    @apply sm:px-16 px-8;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+
+  .info-text {
+    @apply font-montserrat text-slate-gray text-lg leading-7;
+  }
+}
+
+.chef-background {
+  background: linear-gradient(to top, #396c03, transparent), url('/chef.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 70vh;
+}
+
+.linear-gradient {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}
+
+/* .border-width {
+  border
+} */
+
+/* .slide img{
+  width:20rem;
+  margin: 0 auto;
+  } */
+.news-margin {
+  margin: 10rem auto;
+}
+.slide{
+  transform: scale(0.2);
+  transition: transform 300ms;
+  opacity: 0.5;
+}
+
+.slide .image {
+  margin: 0 auto;
+}
+
+/* .image-margin {
+  width: 20rem;
+  margin: ;
+} */
+
+.activeSlide{
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.footer-bg {
+  background: rgb(2,0,36);
+  background: linear-gradient(4deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.gradient-03 {
+  position: absolute;
+  width: 404px;
+  height: 800px;
+  right: 20%;
+  top: 5%;
+  z-index: -1;
+
+  background: #d1b277;
+  filter: blur(175px);
+  transform: rotate(-114.2deg);
+}
+
+.gradient-02 {
+  position: absolute;
+  width: 404px;
+  height: 800px;
+  left: 20%;
+  top: 5%;
+  z-index: -1;
+
+  background: #7c7c74;
+  filter: blur(175px);
+  transform: rotate(-114.2deg);
+}
+
+.gradient-01 {
+  position: absolute;
+  width: 404px;
+  height: 800px;
+  right: 20%;
+  top: 5%;
+  z-index: -1;
+
+  background: #d1b277;
+  filter: blur(175px);
+  transform: rotate(-114.2deg);
+}
+
+
+
+.hr-sharp {
+  border: 0;
+  height: 4px;
+  background: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
+  width: 100px;
+  position: relative;
+}
+
+.hr-sharp::before,
+.hr-sharp::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.hr-sharp::before {
+  left: 0;
+  border-width: 4px 0 4px 4px;
+  border-color: transparent transparent transparent white;
+}
+
+.hr-sharp::after {
+  right: 0;
+  border-width: 4px 4px 4px 0;
+  border-color: transparent white transparent transparent;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }
