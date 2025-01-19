@@ -25,6 +25,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { ZodType } from "zod";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
+import Link from "next/link";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface Props<T extends FieldValues> {
   schema: ZodType<T>;
@@ -39,6 +42,8 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: Props<T>) => {
+  const router = useRouter();
+
   const isSignIn = type === "SIGN_IN";
   console.log(isSignIn);
 
@@ -53,8 +58,22 @@ const AuthForm = <T extends FieldValues>({
     // Do something with the form values.
 
     const result = await onSubmit(data);
-    // ✅ This will be type-safe and validated.
-    console.log(result);
+
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: isSignIn
+          ? "User Successfully Sign In"
+          : "User Successfully Sign Up",
+      });
+      router.push("/dashboard");
+    } else {
+      toast({
+        title: `Error ${isSignIn ? "Signing in" : "Signing up"}`,
+        description: result.error ?? "An error occurred",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -103,6 +122,16 @@ const AuthForm = <T extends FieldValues>({
           </Button>
         </form>
       </Form>
+
+      <p className="text-center text-base font-medium font-montserrat">
+        {isSignIn ? "New to Saiql? " : "Already Have an Account? "}
+        <Link
+          href={isSignIn ? "sign-up" : "sign-in"}
+          className="font-bold text-primary hover:text-saiql-primary duration-300 ease-in-out"
+        >
+          {isSignIn ? "Create an account" : "Sign-in"}
+        </Link>
+      </p>
     </div>
   );
 };
